@@ -1,0 +1,19 @@
+pipeline {
+    agent any
+    stages {
+        stage('Build') {
+            steps {
+                dir("book-discovery-app/bc-5-backend/book-management-service") {
+                    sh 'mvn -B -DskipTests clean package'
+                }
+            }
+        }
+        stage('Test') {
+            steps {
+                dir("book-discovery-app/bc-5-backend/book-management-service") {
+                    sh 'mvn test'
+                }
+            }
+        }
+    }
+}
