@@ -24,7 +24,7 @@ pipeline {
               steps{
                 dir("book-discovery-app/bc-5-backend/book-management-service"){
                       script {
-                                 dockerImage = docker.build -t registry + ":$BUILD_NUMBER"
+                                 dockerImage = docker.build registry + ":$BUILD_NUMBER"
                              }
                        }
                       }
