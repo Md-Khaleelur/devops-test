@@ -3,16 +3,16 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                dir("book-discovery-app/bc-5-backend/book-management-service") {
-                    sh 'mvn -B -DskipTests clean package'
-                }
+                checkout scm
+                sh 'pwd'
+                sh 'cd book-discovery-app/bc-5-backend/book-management-service && mvn -B -DskipTests clean package'
+
             }
         }
         stage('Test') {
             steps {
-                dir("book-discovery-app/bc-5-backend/book-management-service") {
-                    sh 'mvn test'
-                }
+                sh 'pwd'
+                sh 'cd book-discovery-app/bc-5-backend/book-management-service && mvn test'
             }
         }
     }
