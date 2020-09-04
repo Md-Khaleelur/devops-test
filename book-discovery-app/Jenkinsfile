@@ -21,7 +21,7 @@ pipeline {
                 sh 'cd book-discovery-app/bc-5-frontend && ls && rm -rf node_modules/ && npm install && npm run test'
             }
         }
-        stage('Building Docker Image') {
+        stage('Building Docker Image for frontend') {
               steps{
                 dir("book-discovery-app/bc-5-backend/book-management-service"){
                       script {
@@ -30,14 +30,14 @@ pipeline {
                        }
                       }
           }
-         stage('Deploy Docker Image to Dockerhub') {
+         stage('Deploy Docker Image for frontend') {
              steps {
                       sh 'docker login docker.pkg.github.com -u Md-Khaleelur -p ${GH_TOKEN}'
                       sh 'docker push '+frontendRegistry+":$BUILD_NUMBER"
              }
         }
 
-            stage('Building Docker Image') {
+            stage('Building Docker Image for backend') {
                   steps{
                     dir("book-discovery-app/bc-5-backend/book-management-service"){
                           script {
@@ -46,7 +46,7 @@ pipeline {
                            }
                           }
               }
-             stage('Deploy Docker Image to Dockerhub') {
+             stage('Deploy Docker Image for backend') {
                  steps {
                           sh 'docker login docker.pkg.github.com -u Md-Khaleelur -p ${GH_TOKEN}'
                           sh 'docker push '+backendRegistry+":$BUILD_NUMBER"
