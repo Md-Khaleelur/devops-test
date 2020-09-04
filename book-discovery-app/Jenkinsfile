@@ -6,15 +6,13 @@ pipeline {
                 checkout scm
                 sh 'pwd'
                 sh 'cd book-discovery-app/bc-5-backend/book-management-service && mvn -B -DskipTests clean package'
-
-
             }
         }
         stage('Test') {
             steps {
                 sh 'pwd'
                 sh 'cd book-discovery-app/bc-5-backend/book-management-service && mvn test'
-                sh 'cd book-discovery-app/bc-5-frontend && npm run test'
+                sh 'cd book-discovery-app/bc-5-frontend && npm install && npm run build && npm run test'
             }
         }
     }
