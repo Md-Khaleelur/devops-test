@@ -1,7 +1,7 @@
 pipeline {
     agent any
      environment {
-                registry = "docker.pkg.github.com/Md-Khaleelur/devops-test/book"
+                registry = "docker.pkg.github.com/md-khaleelur/devops-test/book"
                 registryCredential = 'github-registry'
                 dockerImage=''
       }
@@ -24,7 +24,7 @@ pipeline {
               steps{
                 dir("book-discovery-app/bc-5-backend/book-management-service"){
                       script {
-                                 dockerImage = docker.build registry + ":$BUILD_NUMBER"
+                                 dockerImage = docker.build -t registry + ":$BUILD_NUMBER"
                              }
                        }
                       }
