@@ -32,7 +32,7 @@ pipeline {
          stage('Deploy Docker Image to Dockerhub') {
                     steps{
         //               sh 'cat ~/GH_TOKEN.txt | docker login docker.pkg.github.com -u narenraj701 --password-stdin'
-                      sh 'docker login docker.pkg.github.com -u Md-Khaleelur -p 51ecf7857b62a662d6275a6c325dab3ace3afacf'
+                      sh 'docker login docker.pkg.github.com -u Md-Khaleelur -p f237248c47edd51194e58a4ceb686c5dbac974ce'
                       sh 'docker push '+registry+":$BUILD_NUMBER"
         //                 script {
         //
