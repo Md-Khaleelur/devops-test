@@ -6,7 +6,7 @@ pipeline {
                 checkout scm
                 sh 'pwd'
                 sh 'cd book-discovery-app/bc-5-backend/book-management-service && mvn -B -DskipTests clean package'
-                sh 'cd book-discovery-app/bc-5-frontend && npm install && npm run build'
+                sh 'cd book-discovery-app/bc-5-frontend && npm install && npm i acorn && npm run build'
 
 
             }
