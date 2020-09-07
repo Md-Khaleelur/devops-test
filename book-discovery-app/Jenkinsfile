@@ -14,13 +14,18 @@ pipeline {
                  sh 'cd book-discovery-app/bc-5-backend/book-management-service && mvn -B -DskipTests clean package'
             }
         }
-        stage('Test') {
+        stage('Testing backend') {
             steps {
                 sh 'pwd'
                  sh 'cd book-discovery-app/bc-5-backend/book-management-service && mvn test'
-                sh 'cd book-discovery-app/bc-5-frontend && ls && rm -rf node_modules/ && npm install && npm run test'
             }
         }
+          stage('Testing frontend') {
+                    steps {
+                        sh 'pwd'
+                        sh 'cd book-discovery-app/bc-5-frontend && rm -rf node_modules/ && npm install && npm run test'
+                    }
+                }
         stage('Building Docker Image for frontend') {
               steps{
                 dir("book-discovery-app/bc-5-backend/book-management-service"){
@@ -37,7 +42,7 @@ pipeline {
              }
         }
 
-            stage('Building Docker Image for backend') {
+         stage('Building Docker Image for backend') {
                   steps{
                     dir("book-discovery-app/bc-5-backend/book-management-service"){
                           script {
@@ -45,12 +50,12 @@ pipeline {
                                  }
                            }
                           }
-              }
-             stage('Deploy Docker Image for backend') {
+         }
+         stage('Deploy Docker Image for backend') {
                  steps {
                           sh 'docker login docker.pkg.github.com -u Md-Khaleelur -p ${GH_TOKEN}'
                           sh 'docker push '+backendRegistry+":$BUILD_NUMBER"
                  }
-            }
-        }
+         }
+      }
 }
