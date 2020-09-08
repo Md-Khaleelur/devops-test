@@ -4,6 +4,7 @@ pipeline {
                 frontendRegistry = "docker.pkg.github.com/md-khaleelur/devops-test/frontend"
                 backendRegistry = "docker.pkg.github.com/md-khaleelur/devops-test/backend"
                 registryCredential = 'github-registry'
+                 GH_TOKEN = credentials('GHB_TOKEN')
                 dockerImage=''
       }
     stages {
