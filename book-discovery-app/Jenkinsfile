@@ -38,7 +38,7 @@ pipeline {
           }
          stage('Deploy Docker Image for frontend') {
              steps {
-                      sh 'docker login docker.pkg.github.com -u Md-Khaleelur -p ${GHB_TOKEN}'
+                      sh 'docker login docker.pkg.github.com -u Md-Khaleelur -p ${GH_TOKEN}'
                       sh 'docker push '+frontendRegistry+":$BUILD_NUMBER"
              }
         }
